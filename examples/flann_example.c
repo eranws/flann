@@ -88,7 +88,7 @@ int main(int argc, char** argv)
     printf("Reading test data file.\n");
     testset = read_points("testset.dat", tcount, cols);
     
-    nn = 3;
+    nn = 1;
     result = (int*) malloc(tcount*nn*sizeof(int));
     dists = (float*) malloc(tcount*nn*sizeof(float));
     
@@ -97,13 +97,17 @@ int main(int argc, char** argv)
     p.trees = 8;
     p.log_level = FLANN_LOG_INFO;
 	p.checks = 64;
-    
+//	p.cores = 1;
+    compCount=0;
+
     printf("Computing index.\n");
     index_id = flann_build_index(dataset, rows, cols, &speedup, &p);
     flann_find_nearest_neighbors_index(index_id, testset, tcount, result, dists, nn, &p);
     
     write_results("results.dat",result, tcount, nn);
-    
+    printf("%d\n", compCount);
+	system("pause");
+
     flann_free_index(index_id, &p);
     free(dataset);
     free(testset);

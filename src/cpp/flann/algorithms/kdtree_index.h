@@ -603,6 +603,9 @@ private:
          */
 
         DistanceType new_distsq = mindist + distance_.accum_dist(val, node->divval, node->divfeat);
+		
+		compCount++;
+		//printf("%d\n", compCount);
         //		if (2 * checkCount < maxCheck  ||  !result.full()) {
         if ((new_distsq*epsError < result_set.worstDist())||  !result_set.full()) {
             heap->insert( BranchSt(otherChild, new_distsq) );

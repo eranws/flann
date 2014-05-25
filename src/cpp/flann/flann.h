@@ -39,6 +39,9 @@ extern "C"
     using namespace flann;
 #endif
 
+FLANN_EXPORT int compCount;
+
+	
 
 struct FLANNParameters
 {
