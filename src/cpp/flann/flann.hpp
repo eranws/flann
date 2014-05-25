@@ -80,6 +80,7 @@ public:
     typedef typename Distance::ResultType DistanceType;
     typedef NNIndex<Distance> IndexType;
 
+	int getCompCount(){return nnIndex_->compCount;}
     Index(const IndexParams& params, Distance distance = Distance() )
         : index_params_(params)
     {

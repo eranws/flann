@@ -49,6 +49,7 @@ namespace flann
 class IndexBase
 {
 public:
+	mutable int compCount;
     virtual ~IndexBase() {};
 
     virtual size_t veclen() const = 0;
@@ -79,11 +80,13 @@ public:
 	NNIndex(Distance d) : distance_(d), last_id_(0), size_(0), size_at_build_(0), veclen_(0),
 			removed_(false), removed_count_(0), data_ptr_(NULL)
 	{
+		compCount=0;
 	}
 
 	NNIndex(const IndexParams& params, Distance d) : distance_(d), last_id_(0), size_(0), size_at_build_(0), veclen_(0),
 			index_params_(params), removed_(false), removed_count_(0), data_ptr_(NULL)
 	{
+		compCount=0;
 	}
 
 	NNIndex(const NNIndex& other) :
@@ -107,6 +110,7 @@ public:
 				points_[i] = data_ptr_ + i*veclen_;
 			}
 		}
+		compCount=0;
 	}
 
 	virtual ~NNIndex()
