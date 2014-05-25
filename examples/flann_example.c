@@ -106,14 +106,14 @@ int main(int argc, char** argv)
     p.log_level = FLANN_LOG_INFO;
 	p.checks = 64;
 //	p.cores = 1;
-    compCount=0;
+//    compCount=0;
 
     printf("Computing index.\n");
     index_id = flann_build_index(dataset, rows, cols, &speedup, &p);
     flann_find_nearest_neighbors_index(index_id, testset, tcount, result, dists, nn, &p);
     
     write_results("results.dat",result, tcount, nn);
-    printf("%d\n", compCount);
+ //   printf("%d\n", compCount);
 	system("pause");
 
     flann_free_index(index_id, &p);
