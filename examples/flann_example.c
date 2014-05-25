@@ -74,19 +74,27 @@ int main(int argc, char** argv)
 	float speedup;
 	flann_index_t index_id;
 
-    int rows = 9000;
-    int cols = 128;
-    int tcount = 1000;
+   
 
     /*
      * The files dataset.dat and testset.dat can be downloaded from:
      * http://people.cs.ubc.ca/~mariusm/uploads/FLANN/datasets/dataset.dat
      * http://people.cs.ubc.ca/~mariusm/uploads/FLANN/datasets/testset.dat
      */
+
+	char* fn1 = "p1.dat_12882_49";
+	char* fn2 = "p2.dat_21420_49";
+	
+	int cols = 49;
+	int rows = 12882;
+    int tcount = 21420; //100
+
     printf("Reading input data file.\n");
-    dataset = read_points("dataset.dat", rows, cols);
+    //dataset = read_points("dataset.dat", rows, cols);
+	dataset = read_points(fn1, rows, cols);
+
     printf("Reading test data file.\n");
-    testset = read_points("testset.dat", tcount, cols);
+    testset = read_points(fn2, tcount, cols);
     
     nn = 1;
     result = (int*) malloc(tcount*nn*sizeof(int));
